@@ -18,13 +18,14 @@ namespace QuanLyDeTu
                 Console.WriteLine("1. Them de tu");
                 Console.WriteLine("2. Hien thi danh sach");
                 Console.WriteLine("3. Tim de tu xuat sac");
-                Console.WriteLine("4. Thoat");
+                Console.WriteLine("4. Ma tran tu linh");
+                Console.WriteLine("5. Thoat");
                 Console.Write("Chon: ");
 
                 // Tranh nhap crash khi sai
                 if (!int.TryParse(Console.ReadLine(), out chon))
                 {
-                    Console.WriteLine("Nhap sai! Vui long nhap so (1-4).");
+                    Console.WriteLine("Nhap sai! Vui long nhap so (1-5).");
                     continue;
                 }
 
@@ -78,9 +79,48 @@ namespace QuanLyDeTu
                         break;
 
                     case 4:
-                        return;
+                        int[,] maTran = new int[3, 3];
+                        Random rd = new Random();
+                        for (int i = 0; i < 3; i++)
+                        {
+                            for (int j = 0; j < 3; j++)
+                            {
+                                maTran[i, j] = rd.Next(1, 101);
+                            }
+                        }
 
-                    default:
+                        Console.WriteLine("\nMa tran linh khi:");
+                        
+                        for (int i = 0; i < 3; i++)
+                        {
+                            for (int j = 0; j < 3; j++)
+                            {
+                                Console.Write(maTran[i, j] + "\t");
+                            }
+                            Console.WriteLine();
+                        }
+                        
+                        int max = maTran[0, 0];
+                        int hang = 0, cot = 0;
+
+                        for (int i = 0; i < 3; i++)
+                        {
+                            for (int j = 0; j < 3; j++)
+                            {
+                                if (maTran[i, j] > max)
+                                {
+                                    max = maTran[i, j];
+                                    hang = i;
+                                    cot = j;
+                                }
+                            }
+                        }
+
+                        Console.WriteLine($"Max = {max} tai vi tri [{hang},{cot}]");
+                        break;
+                    case 5:
+                        return;
+                     default:
                         Console.WriteLine("Lua chon khong hop le!");
                         break;
                 }
